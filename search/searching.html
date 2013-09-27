@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="search.css" rel="stylesheet" type="text/css" />
+<script src="jquery1.9.1.js"></script>
+<script src="jquery.rss"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+$('#one').click( function(){
+ jQuery(function($) {
+       document.getElementById('list').innerHTML = $("#list").rss("http://www.bbc.co.uk/news/uk/rss.xml", {
+          limit: 5,
+          effect: 'slideFastSynced'
+        })
+      })
+})
+
+
+$('#two').click( function(){
+ jQuery(function($) {
+       document.getElementById('list').innerHTML = $("#list").rss("http://www.bbc.co.uk/news/world/africa/rss.xml", {
+          limit: 5,
+          effect: 'slideFastSynced'
+        })
+      })
+})
+
+
+$('#three').click( function(){
+ jQuery(function($) {
+        document.getElementById('list').innerHTML = $("#list").rss("http://www.bbc.co.uk/news/world/asia/rss.xml", {
+          limit: 5,
+          effect: 'slideFastSynced'
+        })
+      })
+})
+
+
+$('#four').click( function(){
+ jQuery(function($) {
+    document.getElementById('list').innerHTML =    $("#list").rss("http://www.bbc.co.uk/news/world/europe/rss.xml", {
+          limit: 5,
+          effect: 'slideFastSynced'
+        })
+      })
+})
+
+$('#five').click( function(){
+ jQuery(function($) {
+       document.getElementById('list').innerHTML = $("#list").rss("http://www.bbc.co.uk/news/world/us_and_canada/rss.xml", {
+          limit: 5,
+          effect: 'slideFastSynced'
+        })
+      })
+})
+
+
+
+});
+	
+</script>
+</head>
+
+<body>
+<div class="main">
+	<div class="contact_header">
+    Search
+    </div>
+	<div id="header" ></div>
+<script>
+	(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
+
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$(form).append(input).appendTo(header);
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("li").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
+</script> 
+
+<div class="con">
+<input id="one" type="button" value="UK" />
+<input id="two" type="button" value="Africa" />
+<input  id="three" type="button" value="Asia" />
+<input id="four" type="button" value="Europe" />
+<input id="five"  type="button" value="Us" />
+
+</div>
+ 
+ <div id= "list">
+ <div></div>
+ </div>
+    
+    <div class="nav">
+    	<ul>
+        	<li>
+            <a href="about.html"><img src="images/nav_about_03.png" /></a>
+            </li>
+            <li>
+            <a href="news.html"><img src="images/nav_news_03.png" /></a>
+            </li>
+            <li>
+            <a href="search.html"><img src="images/nav_search_03.png" /></a>
+            </li>
+            <li style="border:none;">
+            <a href="contact.html"><img src="images/nav_contact_03.png" /></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
